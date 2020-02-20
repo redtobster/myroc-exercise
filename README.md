@@ -1,2 +1,2 @@
-# myroc-exercise
-Implementation of custom myroc function in R
+# YSC 4224: Data Science Accelerator Exercise 2
+Implementation of custom roc function in R
