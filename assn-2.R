@@ -9,15 +9,15 @@ library(pROC)
 ##  1. Importing Logistic Regression Model   =
 ##============================================
 # Importing logistic regression model, rPhi, xtest and ytest
-glmresult <- read.csv("tidy_glmresult.csv")
-rPhi <- as.matrix(read.csv("rPhi.csv"))[,-1]
+glmresult <- read.csv("dependencies/tidy_glmresult.csv")
+rPhi <- as.matrix(read.csv("dependencies/rPhi.csv"))[,-1]
 beta.Z <- as.matrix(glmresult$estimate[-1])
 beta0 <- glmresult$estimate[1] # getting the intercept
 beta.X <- rPhi %*% beta.Z
 
 # importing xtest and ytest
-xtest <- as.matrix(read.csv("Xtest.csv"))[,-1]
-ytest <- read.table("ytest.txt")$x
+xtest <- as.matrix(read.csv("dependencies/Xtest.csv"))[,-1]
+ytest <- read.table("dependencies/ytest.txt")$x
 
 # getting the linear predictors eta and apply it to invlogit to get the probabilities
 hateta <- beta0 + xtest %*% beta.X 
@@ -111,3 +111,4 @@ print(abs(myroc(ytest, hat_prob, from, to, length.out)$auc - g$auc))
 # This is because the method of computing is very primitive which is calculating the area
 # of small trapezoid and summing them together instead of doing a proper integration, which
 # I believe will give more accurate area under the curve.
+
